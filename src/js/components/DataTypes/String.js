@@ -43,7 +43,6 @@ export default class extends React.Component {
         '(\?[;&a-z\d%_.~+=-]*)?'+ // query string
         '(\#[-a-z\d_]*)?$','i'); // fragment locater
       if(!pattern.test(str)) {
-        alert("Please enter a valid URL.");
         return false;
       } else {
         return true;
