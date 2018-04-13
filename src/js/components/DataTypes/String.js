@@ -8,6 +8,16 @@ import Theme from "./../../themes/getStyle"
 //attribute store for storing collapsed state
 import AttributeStore from "./../../stores/ObjectAttributes"
 
+const debug = require('debug')('base:jsonviewer')
+
+const httpPattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+'((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name and extension
+'((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+'(\\:\\d+)?'+ // port
+'(\\/[-a-z\\d%@_.~+&:]*)*'+ // path
+'(\\?[;&a-z\\d%@_.,~+&:=-]*)?'+ // query string
+'(\\#[-a-z\\d_]*)?$','i').compile()
+
 export default class extends React.Component {
     constructor(props) {
         super(props)
@@ -35,20 +45,6 @@ export default class extends React.Component {
         this.setState(this.state)
     }
 
-    isValidURL(str) {
-      var pattern = new RegExp('^(https?:\/\/)?'+ // protocol
-        '((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|'+ // domain name
-        '((\d{1,3}\.){3}\d{1,3}))'+ // OR ip (v4) address
-        '(\:\d+)?(\/[-a-z\d%_.~+]*)*'+ // port and path
-        '(\?[;&a-z\d%_.~+=-]*)?'+ // query string
-        '(\#[-a-z\d_]*)?$','i'); // fragment locater
-      if(!pattern.test(str)) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-
     render() {
 
 
@@ -72,7 +68,10 @@ export default class extends React.Component {
             }
         }
 
-        let renderStringValue = this.isValidURL(value) ? <a target='_blank' href={value}>"{value}"</a> : "{value}";
+        debug(props)
+        const isURL = httpPattern.test(value)
+
+        debug('isURL is ', isURL)
 
         return (
             <div {...Theme(theme, "string")}>
@@ -82,7 +81,7 @@ export default class extends React.Component {
                     {...style}
                     onClick={this.toggleCollapsed}
                 >
-                    "{value}"
+                    { isURL ? <a target='_blank' href={value}>"{value}"</a> : `"${value}"` }
                 </span>
             </div>
         )
