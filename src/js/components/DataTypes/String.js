@@ -8,15 +8,8 @@ import Theme from "./../../themes/getStyle"
 //attribute store for storing collapsed state
 import AttributeStore from "./../../stores/ObjectAttributes"
 
+const url = require('url')
 const debug = require('debug')('base:jsonviewer')
-
-const httpPattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-'((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name and extension
-'((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-'(\\:\\d+)?'+ // port
-'(\\/[-a-z\\d%@_.~+&:]*)*'+ // path
-'(\\?[;&a-z\\d%@_.,~+&:=-]*)?'+ // query string
-'(\\#[-a-z\\d_]*)?$','i').compile()
 
 export default class extends React.Component {
     constructor(props) {
@@ -69,7 +62,7 @@ export default class extends React.Component {
         }
 
         debug(props)
-        const isURL = httpPattern.test(value)
+        const isURL = url.parse(value).hostname != null
 
         debug('isURL is ', isURL)
 
