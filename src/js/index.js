@@ -49,6 +49,7 @@ export default class extends React.Component {
         displayDataTypes: true,
         onEdit: false,
         onDelete: false,
+        onExtract: false,
         onAdd: false,
         onSelect: false,
         iconStyle: "triangle",

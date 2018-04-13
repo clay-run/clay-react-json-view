@@ -6,7 +6,7 @@ import {toType} from './../helpers/util';
 
 //icons
 import {
-    RemoveCircle as Remove, AddCircle as Add
+    RemoveCircle as Remove, AddCircle as Add, JsonExtractor as Pointer
 } from './icons';
 
 //theme
@@ -100,6 +100,14 @@ export default class extends React.Component {
         );
     }
 
+    getExtract = () => {
+        return (
+            <span>
+                <Pointer/>
+            </span>
+        )
+    }
+
     render = () => {
         const {
             theme,
@@ -127,6 +135,7 @@ export default class extends React.Component {
             {/* copy add/remove icons */}
             {onAdd !== false ? this.getAddAttribute() : null}
             {onDelete !== false ? this.getRemoveObject() : null}
+            {onExtract !== false ? this.getExtract() : null }
         </div>
         );
     }

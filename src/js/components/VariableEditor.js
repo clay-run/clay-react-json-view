@@ -51,6 +51,7 @@ class VariableEditor extends React.Component {
             onEdit,
             onDelete,
             onSelect,
+            onExtract,
             rjvId
         } = this.props
         const { editMode } = this.state
@@ -125,6 +126,9 @@ class VariableEditor extends React.Component {
                 {onDelete !== false && editMode == false
                     ? this.getRemoveIcon()
                     : null}
+                {onExtract !== false ? (
+                    <span>extract this</span>
+                ) : null}
             </div>
         )
     }
