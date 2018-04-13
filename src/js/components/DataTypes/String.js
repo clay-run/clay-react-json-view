@@ -35,7 +35,7 @@ export default class extends React.Component {
         this.setState(this.state)
     }
 
-    isValidURL = (str) => {
+    isValidURL(str) {
       var pattern = new RegExp('^(https?:\/\/)?'+ // protocol
         '((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|'+ // domain name
         '((\d{1,3}\.){3}\d{1,3}))'+ // OR ip (v4) address
@@ -72,7 +72,7 @@ export default class extends React.Component {
             }
         }
 
-        let renderStringValue = this.isValidUrl(value) ? <a target='_blank' href={value}>"{value}"</a> : "{value}";
+        let renderStringValue = this.isValidURL(value) ? <a target='_blank' href={value}>"{value}"</a> : "{value}";
 
         return (
             <div {...Theme(theme, "string")}>
