@@ -22,7 +22,7 @@ import {
 } from "./DataTypes/DataTypes"
 
 //clibboard icon
-import { Edit, CheckCircle, RemoveCircle as Remove } from "./icons"
+import { Edit, CheckCircle, RemoveCircle as Remove, JsonExtractor as Pointer } from "./icons"
 
 //theme
 import Theme from "./../themes/getStyle"
@@ -126,9 +126,9 @@ class VariableEditor extends React.Component {
                 {onDelete !== false && editMode == false
                     ? this.getRemoveIcon()
                     : null}
-                {onExtract !== false ? (
-                    <span>extract this</span>
-                ) : null}
+                {onExtract !== false
+                    ? this.getExtractIcon()
+                    : null}
             </div>
         )
     }
@@ -146,6 +146,19 @@ class VariableEditor extends React.Component {
                     }}
                 />
             </div>
+        )
+    }
+
+    getExtractIcon = () => {
+        const {
+            theme, namespace, name, src, rjvId, depth,
+            onExtract
+        } = this.props
+
+        return (
+            <span className='click-to-remove'>
+                <Pointer onClick={_ => this.props.onExtract(this.props)}/>
+            </span>
         )
     }
 

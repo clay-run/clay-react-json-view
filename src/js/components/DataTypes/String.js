@@ -70,8 +70,6 @@ export default class extends React.Component {
         }
         debug('isURL is ', isURL)
 
-
-
         return (
             <div {...Theme(theme, "string")}>
                 <DataTypeLabel type_name={type_name} {...props} />

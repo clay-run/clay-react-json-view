@@ -101,9 +101,14 @@ export default class extends React.Component {
     }
 
     getExtract = () => {
+        const {
+            theme, namespace, name, src, rjvId, depth,
+            onExtract
+        } = this.props
+
         return (
-            <span>
-                <Pointer/>
+            <span className='click-to-remove'>
+                <Pointer onClick={_ => this.props.onExtract(this.props)}/>
             </span>
         )
     }
@@ -115,8 +120,10 @@ export default class extends React.Component {
             onAdd,
             enableClipboard,
             src,
-            namespace
+            namespace,
+            onExtract
         } = this.props;
+
         return (
         <div {...Theme(theme, 'object-meta-data')}
         class='object-meta-data'
