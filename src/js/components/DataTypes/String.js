@@ -61,10 +61,10 @@ export default class extends React.Component {
             }
         }
 
-        debug(props)
+        //debug(props)
         const isURL = url.parse(value).hostname != null
 
-        debug('isURL is ', isURL)
+        //Rdebug('isURL is ', isURL)
 
         return (
             <div {...Theme(theme, "string")}>
