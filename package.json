@@ -1,7 +1,7 @@
 {
   "name": "clay-react-json-view",
   "description": "Interactive react component for displaying javascript arrays and JSON objects.",
-  "version": "1.16.24",
+  "version": "1.16.25",
   "main": "dist/main.js",
   "files": [
     "dist/"
